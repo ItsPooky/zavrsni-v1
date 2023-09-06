@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern</title>
+    <link rel="stylesheet" href="modern.css">
+    <style>
+        body{
+    background-color: #D5D5D5;
+    font-family: system-ui;
+}
+.modern-container{
+    background-color: #E9E7EA;
+    width: 1000px;
+    max-width: 100%;
+    margin: auto;
+    padding: 50px;
+    box-shadow: 0 10px 50px #858585;
+    display: grid;
+    grid-template-columns: 35% 60%;
+    column-gap: 5%;
+    row-gap: 30px;
+}
+.avatar img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.avatar{
+    display: flex;
+    justify-content: end;
+}
+.name{
+    padding-left: 30px;
+    border-left: 1px solid #000;
+}
+.name h1{
+    font-weight: 300;
+    font-size: xxx-large;
+    margin: 0 0 5px;
+}
+.name .specialize{
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+.name .contact{
+    padding: 0;
+    list-style: none;
+}
+.name .contact span{
+    display: inline-block;
+    background-color: #000;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: small;
+    margin-right: 20px;
+}
+.name .contact li{
+    padding: 5px 0;
+    transform: translate(-40px);
+    background-color: #E9E7EA;
+}
+.info ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: right;
+    line-height: 30px;
+}
+.intro{
+    padding-left: 30px;
+    border-left: 1 solid #000;
+    text-align: justify;
+}
+h2{
+    padding: 0;
+    margin: 0 0 20px;
+}
+.exp{
+    text-align: right;
+}
+.exp h4{
+    margin: 20px 0 10px;
+}
+.skills{
+    margin-top: 50px;
+}
+.exp ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    line-height: 35px;
+}
+.project{
+    padding-left: 30px;
+    text-align: justify;
+    border-left: 1px solid #000;
+
+}
+.project .web{
+    color: green;
+    padding: 10px 0;
+}
+.project .location{
+    font-weight: 500;
+    padding: 10px 0;
+}
+.project .item{
+    position: relative;
+}
+.project .item::before{
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    background-color: #000;
+    content: '';
+    border-radius: 50%;
+    left: -37px;
+}
+    </style>
+</head>
+<body>
+    <div class="modern-container">
+        <div class="avatar">
+            <img src="/">
+        </div>
+        <div class="name">
+            <h1>Stefan Stankovic</h1>
+            <div class="specialize">
+                Front-end Developer
+            </div>
+            <ul class="contact">
+                <li>
+                    <span>P</span>+381692297279
+                </li>
+                <li>
+                    <span>E</span>sstankovic0111@gmail.com
+                </li>
+                <li>
+                    <span>W</span>pookyweb.com
+                </li>
+            </ul>
+        </div>
+        <div class="info">
+            <ul>
+                <li>
+                    From <b>HCMC</b> - Serbia
+                </li>
+                <li>
+                    27/10/2001
+                </li>
+                <li>
+                    ATVSS 
+                </li>
+            </ul>
+        </div>
+        <div class="intro">
+            <h2>INTRO</h2>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam similique alias nam vitae neque molestiae illum numquam voluptate labore tempora harum, nihil, aspernatur doloremque saepe sit excepturi voluptates quaerat distinctio?
+        </div>
+        <div class="exp">
+            <h2>EXPERIENCE</h2>
+            <div class="item">
+                <h4>Front-end Developer</h4>
+                <div class="time">
+                    <span>
+                        2020 - 2022
+                    </span>
+                    <span>
+                        ABCD Company
+                    </span>
+                </div>
+                <div class="des">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad, quam? Vel et neque molestiae esse? Cum, ex provident explicabo optio suscipit expedita, dicta amet reiciendis odio, maiores voluptatem repudiandae earum!
+                </div>
+            </div>
+            <div class="item">
+                <h4>Student</h4>
+                <div class="time">
+                    <span>
+                        2016 - 2020
+                    </span>
+                    <span>
+                        ABCD University
+                    </span>
+                </div>
+                <div class="des">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad, quam? Vel et neque molestiae esse? Cum, ex provident explicabo optio suscipit expedita, dicta amet reiciendis odio, maiores voluptatem repudiandae earum!
+                </div>
+            </div>
+
+            <h2 class="skills">Skills</h2>
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>Bootstrap</li>
+                <li>JQuery</li>
+                <li>PHP</li>
+                <li>MySql</li>
+                <li>Git</li>
+            </ul>
+
+        </div>
+        <div class="project">
+            <h2>PROJECT</h2>
+            <div class="item">
+                <h4>Website shopping games</h4>
+                <div class="time">
+                    2021
+                </div>
+                <div class="web">
+                    www.gamingsite.com
+                </div>
+                <div class="location">
+                    Front-end Developer
+                </div>
+                <div class="des">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro a et adipisci architecto accusantium delectus dolorem, provident sit nemo nihil sint autem animi, saepe odit sed nostrum culpa facere dolor.
+                    <ul>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab vitae alias ipsam dolorem possimus maxime saepe nam harum aspernatur illo est recusandae voluptatem, ut ex molestiae suscipit fugiat maiores perferendis!</li>
+                        <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam delectus ullam repudiandae dolorem voluptates, odit veniam nisi sit! Fugit ex autem nesciunt maxime ullam nostrum exercitationem soluta dignissimos veniam laborum!</li>
+                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis repellendus assumenda excepturi? Iure autem placeat aliquid obcaecati, quas, modi dignissimos eligendi reiciendis voluptatibus, natus iusto saepe eaque voluptate minima quibusdam?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="item">
+                <h4>Website shopping games</h4>
+                <div class="time">
+                    2021
+                </div>
+                <div class="web">
+                    www.gamingsite.com
+                </div>
+                <div class="location">
+                    Front-end Developer
+                </div>
+                <div class="des">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro a et adipisci architecto accusantium delectus dolorem, provident sit nemo nihil sint autem animi, saepe odit sed nostrum culpa facere dolor.
+                    <ul>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab vitae alias ipsam dolorem possimus maxime saepe nam harum aspernatur illo est recusandae voluptatem, ut ex molestiae suscipit fugiat maiores perferendis!</li>
+                        <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam delectus ullam repudiandae dolorem voluptates, odit veniam nisi sit! Fugit ex autem nesciunt maxime ullam nostrum exercitationem soluta dignissimos veniam laborum!</li>
+                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis repellendus assumenda excepturi? Iure autem placeat aliquid obcaecati, quas, modi dignissimos eligendi reiciendis voluptatibus, natus iusto saepe eaque voluptate minima quibusdam?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,317 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+body .darkmode{
+    background-color: #333333;
+    color: #ffffff;
+}
+header{
+    position: absolute;
+    padding: 10px;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    height: 65px;
+    background: #6643b5;
+    display: flex;
+    justify-content: space-between;
+}
+.heading-bg{
+    position:absolute;
+    z-index: 99;
+    top: -60px;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    background: #6643b5;
+    -webkit-transform: skewY(6deg);
+    transform: skewY(6deg);
+}
+.container.dark-mode{
+    border-color: #666666;
+}
+.container {
+    width: 40%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: no-wrap;
+    align-items: flex-start;
+    z-index: 99;
+}
+.main-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+h2 {
+    display: block;
+    font-size: 1.5rem;
+    margin-block-start: 1rem;
+    margin-block-end: 1rem;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+.personal1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.dropdown{
+    min-width: 8em;
+    position: relative;
+    margin: 1em;
+}
+.dropdown * {
+    box-sizing: border-box;
+}
+.select{
+    background: #fff;
+    color: #000000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px #2a2f3b solid;
+    border-radius: 0.5em;
+    padding: 1em;
+    cursor: pointer;
+    transition: background 0.3;            
+}
+.select-clicked{
+    border: 2px #6643b5 solid;
+    box-shadow: 0 0 0.8em #6643b5;
+}
+.select:hover{
+    background: #eaeaea;
+}
+.caret{
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #2a2f3b;
+}
+.caret-rotate{
+    transform: rotate(180deg);
+}
+.menu{
+    list-style: none;
+    padding: 1em 1em;
+    background: #fff;
+    border: 1px #fff solid;
+    box-shadow: 0 0.5 1em rgba(211, 204, 204, 0.2);
+    border-radius: 0.7em;
+    color: #000000;
+    position: absolute;
+    top: 3em;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    opacity: 0;
+    display: none;
+    transition: 0.2s;
+    z-index: 1;
+}
+menu li{
+    padding: 0.7em 0.5em;
+    margin: 0.5em 0;
+    border-radius: 1em;
+    cursor: pointer;    
+}
+menu li:hover{
+    background: #eaeaea;
+}
+.active{
+    background: #eaeaea;
+}
+.menu-open{
+    display: block;
+    opacity: 1;
+}
+.hroption{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #23242a;
+}
+
+.personaldetails{
+    background-color: #2a2f3b;
+    width: 100%;
+    height: 1px;
+    margin-right: 30px;
+}
+
+.profile-img {
+    max-width: 150px;
+    border-radius: 50%;
+    display: block;
+}
+.form-group {
+    margin-bottom: 20px;
+    margin-top: 15px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    display: flex;
+}
+.form-group1{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+.form-group2{
+    margin-top: 15px;
+}
+.names{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+.emailposition{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+#email{
+    height: 40px;
+    width: 85%;
+}
+#phone{
+    height: 40px;
+    width: 100%;
+}
+.phoneposition{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    
+}
+.zipcode{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 50%;
+}
+#zipcode{
+    height: 40px;
+    width: 85%;
+}
+
+.citytown{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+}
+#citytown{
+    height: 40px;
+    width: 100%;
+}
+#adress{
+    width: 100%;
+}
+.from-group2{
+    display: flex;
+}
+label {
+    font-weight: bold;
+}
+input[type="text"] {
+    width: 100%;
+    justify-content: space-between;
+    height: 40px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.form-button{
+    display: flex;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    justify-content: center;
+
+}
+.nextbutton {
+    outline: none;
+    position: relative;
+    font-size: 18px;
+    padding: 25px 0px 25px 0;
+    display: inline-block;
+    min-width: 240px;
+    border-radius: 31px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #fff;
+    background:  #6643b5;
+    transition: all 0.5s ease;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(50,50,93,0.11), 0 1px 3px rgba(0,0,0,0.08);
+} 
+label.picture {
+    margin-right: 30px;
+}
+
+#picture__input {
+    display: none;
+  }
+  
+  .picture {
+    padding: 70px;
+    width: 152px;
+    height: 152px;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    border: 2px dashed currentcolor;
+    cursor: pointer;
+    font-family: sans-serif;
+    transition: color 300ms ease-in-out, background 300ms ease-in-out;
+    outline: none;
+    overflow: hidden;
+  }
+  
+  .picture:hover {
+    color: #777;
+    background: #ccc;
+  }
+  
+  .picture:active {
+    border-color: turquoise;
+    color: turquoise;
+    background: #eee;
+  }
+  
+  .picture:focus {
+    color: #777;
+    background: #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .picture__img {
+    max-width: 100%;
+  }
