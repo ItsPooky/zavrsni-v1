@@ -124,7 +124,7 @@
         transition: background 0.3;            
     }
     .select-clicked{
-        border: 2px #6643b5 solid;
+        border: 1px #6643b5 solid;
         box-shadow: 0 0 0.8em #6643b5;
     }
     .select:hover{
@@ -345,6 +345,15 @@
       .picture__img {
         max-width: 100%;
       }
+      .forma{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+      }
+      .cvc{
+        color: #fff;
+        margin-left: 250px;
+      }
     </style>
 <!--------------------------------------------------------------------------------WIZARD PICTURE-------------------------------------------------------------------------------------------->
     
@@ -353,12 +362,10 @@
 
 <body>
     <header>
-        <h1>CvCreator</h1>
+        <h1 class="cvc">CvCreator</h1>
         <div class="information">
-            <span class="contact">Contact</span>
                 <span class="resumetemplates">Resume templates</span>
                     <span class="cvtemplates">CV templates</span>
-                        <span class="login">Login</span>
         </div>
     </header>
         <div class="heading-bg"></div>
@@ -373,16 +380,16 @@
                                     </div>
                                 <ul class="menu">
                                     <li>English</li>
-                                        <hr class="hroption">
-                                        <li>French</li>
                                             <hr class="hroption">
                                                 <li>Serbian</li>
+                                                <hr class="hroption">
                                 </ul>
                             </div>
                         </div>
                     </div>
                 <hr class="personaldetails">
             <div class="form-group">
+                <form action="" method="post" class="forma">
                 <br/>
                     <label class="picture" for="picture__input" tabIndex="0">
                         <span class="picture__image"></span>
@@ -392,9 +399,9 @@
                     <input type="file" id="FileUpload1" style="display:none" />
                         <div class="names">
                     <label for="firstname">First name:</label>
-                        <input type="text" id="firstname" name="firstname">
+                        <input type="text" id="firstname" name="first_name">
                     <label for="lastname">Last name:</label>
-                        <input type="text" id="lastname" name="lastname">
+                        <input type="text" id="lastname" name="last_name">
                 </div>
                 </div>
                 
@@ -405,23 +412,26 @@
                         </div>
                     <div class="phoneposition">
                         <label for="phone">Phone number:</label>
-                            <input type="text" id="phone" name="phone">
+                            <input type="text" id="phone" name="phone_number">
                         </div>
                     </div>
                 <div class="form-group2">
                     <label for="adress">Adress:</label>   
-                        <input type="text" id="adress" name="adress">
+                        <input type="text" id="adress" name="address">
                 </div>
                 <div class="form-group1">
                     <div class="zipcode"><label for="zipcode">Zip code:</label>
-                        <input type="text" id="zipcode" name="zipcode">
+                        <input type="text" id="zipcode" name="zip_code">
                     </div>
                     <div class="citytown"><label for="citytown">City/Town:</label>
-                        <input type="text" id="citytown" name="citytown" placeholder="e.g. San francisco">
+                        <input type="text" id="citytown" name="city" placeholder="e.g. San francisco">
                     </div>
                 </div>
+            </form>
                     <div class="form-button">
-                        <button type="submit" class="nextbutton">Next step</button> 
+                        <form method="get|post">
+                        <button id="submit" type="submit" class="nextbutton" value="create">Next step</button> 
+                        </form>
                     </div>
                 </div>
             </div>

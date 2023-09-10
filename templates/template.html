@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CvCreator</title>
+    <style>
+
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    body .darkmode{
+        background-color: #333333;
+        color: #ffffff;
+    }
+    header{
+        position: absolute;
+        padding: 10px;
+        top: 0;
+        width: 100%;
+        z-index: 999;
+        height: 65px;
+        background: #6643b5;
+        display: flex;
+        justify-content: space-between;
+    }
+    .heading-bg{
+        position:absolute;
+        z-index: 99;
+        top: -60px;
+        left: 0;
+        width: 100%;
+        height: 600px;
+        background: #6643b5;
+        -webkit-transform: skewY(7deg);
+        transform: skewY(7deg);
+    }
+
+    .tem_container{
+        width: 25%;
+        padding: 20px;
+        color: #6643b5;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        flex-wrap: no-wrap;
+        align-items: flex-start;
+        z-index: 99;
+    }
+    .form_selection_template{
+        z-index: 9;
+        display: flex;
+    }
+    .template_preview{
+
+    }
+    .template_preview_item{
+        list-style: none;
+    }
+    .template_preview_name{
+        display: block;
+        margin-left: 110px;
+    }
+    .template_preview_wrapper{
+        display: flex;
+        width: 100%;
+        height: 90%;
+    }
+    .contain{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        height: 40%;
+    }
+    .cvc{
+        color: #fff;
+        margin-left: 250px;
+    }
+    .information{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 30%;
+        font-size: 16px;
+        color: #fff;
+        align-self: center;
+    }
+    .template_select{
+        display: inline-block;
+        position: relative;
+        background: #fff;
+        height: 1120px;
+        width: 790px;
+        -webkit-transform: scale(0.253);
+        transform: scale(0.253);
+        max-height: 1133px;
+        left: 50%;
+        margin-left: -100px;
+        border: none;
+        pointer-events: none;
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        -webkit-transition: all .6s ease;
+        transition: all .6s ease;
+        cursor: pointer;
+        opacity: 0;
+    }
+    
+    </style>
+
+</head>
+<body>
+    <header>
+        <h1 class="cvc">CvCreator</h1>
+        <div class="information">
+                <span class="resumetemplates">Resume templates</span>
+                    <span class="cvtemplates">CV templates</span>
+        </div>
+    </header>
+        <div class="heading-bg"></div>
+        <div class="contain">
+        <div class="tem_container">
+            <div class="form_selection_template">
+                <ul class="template_preview">
+                    <li class="template_preview_item">
+                        <h2 class="template_preview_name">Modern</div>
+                            <div class="template_preview_wrapper">
+                                <iframe src="/templates/modern.html" frameborder="0" class="template_select"></iframe>
+                            </div>
+                        </li>
+                </ul>
+            </div>
+        <div class="tem_container">
+            <div class="form_selection_template">
+                <ul class="template_preview">
+                    <li class="template_preview_item">
+                        <h2 class="template_preview_name"></div>
+                            <div class="template_preview_wrapper">
+                                <iframe src="" frameborder="0"></iframe>
+                            </div>
+                        </li>
+                </ul>
+            </div>
+        <div class="tem_container">
+            <div class="form_selection_template">
+                <ul class="template_preview">
+                    <li class="template_preview_item">
+                        <h2 class="template_preview_name"></div>
+                            <div class="template_preview_wrapper">
+                                <iframe src="" frameborder="0"></iframe>
+                            </div>
+                        </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+</html>
