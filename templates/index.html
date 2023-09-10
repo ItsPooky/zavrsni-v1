@@ -383,47 +383,51 @@
                     </div>
                 <hr class="personaldetails">
             <div class="form-group">
-                <br/>
-                    <label class="picture" for="picture__input" tabIndex="0">
-                        <span class="picture__image"></span>
-                    </label>
-                    <input type="file" name="picture__input" id="picture__input">
-                        <span id="spnFilePath"></span>
-                    <input type="file" id="FileUpload1" style="display:none" />
-                        <div class="names">
-                    <label for="firstname">First name:</label>
-                        <input type="text" id="firstname" name="firstname">
-                    <label for="lastname">Last name:</label>
-                        <input type="text" id="lastname" name="lastname">
-                </div>
+                <form method="POST">
+                    <br/>
+                        <label class="picture" for="pictureinput" tabIndex="0">
+                            <span class="pictureimage"></span>
+                        </label>
+                        <input type="file" name="pictureinput" id="pictureinput">
+                            <span id="spnFilePath"></span>
+                        <input type="file" id="FileUpload1" style="display:none" />
+                            <div class="names">
+                        <label for="firstname">First name:</label>
+                            <input type="text" id="firstname" name="firstname">
+                        <label for="lastname">Last name:</label>
+                            <input type="text" id="lastname" name="lastname">
+                    </div>
+                    </div>
+    
+                    <div class="form-group1">
+                        <div class="emailposition">
+                            <label for="email">Email:</label>
+                                <input type="text" id="email" name="email">
+                            </div>
+                        <div class="phoneposition">
+                            <label for="phone">Phone number:</label>
+                                <input type="text" id="phone" name="phone">
+                            </div>
+                        </div>
+                    <div class="form-group2">
+                        <label for="adress">Adress:</label>
+                            <input type="text" id="adress" name="adress">
+                    </div>
+                    <div class="form-group1">
+                        <div class="zipcode"><label for="zipcode">Zip code:</label>
+                            <input type="text" id="zipcode" name="zipcode">
+                        </div>
+                        <div class="citytown"><label for="citytown">City/Town:</label>
+                            <input type="text" id="citytown" name="citytown" placeholder="e.g. San francisco">
+                        </div>
+                    </div>
+                    </form>
+                <div class="form-button">
+                    <form method="POST" action="/2">
+                        <button id="submit" type="submit" class="nextbutton" value="create">Next step</button> 
+                    </form>
                 </div>
                 
-                <div class="form-group1">
-                    <div class="emailposition">
-                        <label for="email">Email:</label>
-                            <input type="text" id="email" name="email">
-                        </div>
-                    <div class="phoneposition">
-                        <label for="phone">Phone number:</label>
-                            <input type="text" id="phone" name="phone">
-                        </div>
-                    </div>
-                <div class="form-group2">
-                    <label for="adress">Adress:</label>   
-                        <input type="text" id="adress" name="adress">
-                </div>
-                <div class="form-group1">
-                    <div class="zipcode"><label for="zipcode">Zip code:</label>
-                        <input type="text" id="zipcode" name="zipcode">
-                    </div>
-                    <div class="citytown"><label for="citytown">City/Town:</label>
-                        <input type="text" id="citytown" name="citytown" placeholder="e.g. San francisco">
-                    </div>
-                </div>
-                    <div class="form-button">
-                        <button type="submit" class="nextbutton">Next step</button> 
-                    </div>
-                </div>
             </div>
         </div>
     </div>
