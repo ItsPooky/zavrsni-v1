@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<div class="registerForma"> 
+
+	<form action=" " method="POST" class="form_nova">
+		<div>
+			<label for="email">Username: </label>
+			<input type="text" name="username" required>
+		</div>
+		<div>
+			<label for="lozinka">Lozinka: </label>
+			<input type="password" name="lozinka" required>
+		</div>
+		<div class="registerbtn">
+		<a href="{{url_for('login')}}"><button type="submit" class="registerbtn">Register</button></a>
+		</div>
+		<div class="signin">
+    		<p>Vec imate nalog? Ulogujte se! <a href="{{url_for('login')}}">Uloguj se</a>.</p>
+  		</div>
+	</form>
+</div>
+
+{%endblock%}

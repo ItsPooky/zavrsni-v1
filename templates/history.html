@@ -1,504 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>CVcreator</title>
-    <link  href="index.css" rel="stylesheet" type="">
-    
-</head>
-<!-----------------------------------------------------------------------------------------CSS---------------------------------------------------------------------------------------------->
-<style>
-       
-    *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    body {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        width: 100%;
-        height: 100vh;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-    }
-    body .darkmode{
-        background-color: #333333;
-        color: #ffffff;
-    }
-    header{
-        position: absolute;
-        padding: 10px;
-        top: 0;
-        width: 100%;
-        z-index: 999;
-        height: 65px;
-        background: #6643b5;
-        display: flex;
-        justify-content: space-between;
-    }
-    .heading-bg{
-        position:absolute;
-        z-index: 99;
-        top: -60px;
-        left: 0;
-        width: 100%;
-        height: 600px;
-        background: #6643b5;
-        -webkit-transform: skewY(7deg);
-        transform: skewY(7deg);
-    }
-    .information{
-        display: flex; 
-        flex-direction: row;
-        justify-content: space-evenly;
-        width: 30%;
-        font-size: 16px;
-        color: #fff;
-        align-self: center;
-    }
-/*-------------------------------------------------------------------------------DARK MODE WEB SITE------------------------------------------------------------------------------------*/
+{%extends 'base.html'%}
 
-    .container.dark-mode{
-        border-color: #666666;
-    }
-    .container {
-        width: 40%;
-        height: 100%;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        display: flex;
-        flex-direction: row;
-        flex-wrap: no-wrap;
-        align-items: flex-start;
-        z-index: 99;
-    }
-    .container1 {
-        width: 50%;
-        margin-top: 20px;
-        height: 80%;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        display: flex;
-        flex-direction: column;
-        flex-wrap: no-wrap;
-        align-items: flex-start;
-        z-index: 99;
-        overflow: hidden;
-    }
-    .scroll{
-        overflow-y: auto;
-        width: 100%;
-        color: #6643b5;
-    }
-    .main-column {
-        border-radius: 5px;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-    .main-column1{
-        border-radius: 5px;
-        flex: 1;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-    }
-    h1 {
-        color: #333;
-        text-align: center;
-    }
-    
-    h2 {
-        display: block;
-        font-size: 1.5rem;
-        margin-block-start: 1rem;
-        margin-block-end: 1rem;
-        margin-inline-start: 0px;
-        margin-inline-end: 0px;
-        font-weight: bold;
-    }
-    .personal1{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: baseline;
-    }
-/*---------------------------------------------------------------------------DROPDOWN MENU--------------------------------------------------------------------------------------------*/
-    .dropdown{
-        min-width: 8em;
-        position: relative;
-        margin: 1em;
-    }
-    .dropdown * {
-        box-sizing: border-box;
-    }
-    .select{
-        background: #fff;
-        color: #000000;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border: 1px #2a2f3b solid;
-        border-radius: 0.5em;
-        padding: 1em;
-        cursor: pointer;
-        transition: background 0.3;            
-    }
-    .select-clicked{
-        border: 2px #6643b5 solid;
-        box-shadow: 0 0 0.8em #6643b5;
-    }
-    .select:hover{
-        background: #eaeaea;
-    }
-    .caret{
-        width: 0;
-        height: 0;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-top: 6px solid #2a2f3b;
-    }
-    .caret-rotate{
-        transform: rotate(180deg);
-    }
-    .menu{
-        list-style: none;
-        padding: 1em 1em;
-        background: #fff;
-        border: 1px #fff solid;
-        box-shadow: 0 0.5 1em rgba(211, 204, 204, 0.2);
-        border-radius: 0.7em;
-        color: #000000;
-        position: absolute;
-        top: 3em;
-        left: 50%;
-        width: 100%;
-        transform: translateX(-50%);
-        opacity: 0;
-        display: none;
-        transition: 0.2s;
-        z-index: 1;
-    }
-    menu li{
-        padding: 0.7em 0.5em;
-        margin: 0.5em 0;
-        border-radius: 1em;
-        cursor: pointer;    
-    }
-    menu li:hover{
-        background: #eaeaea;
-    }
-    .active{
-        background: #eaeaea;
-    }
-    .menu-open{
-        display: block;
-        opacity: 1;
-    }
-    .hroption{
-        margin-top: 5px;
-        margin-bottom: 5px;
-        color: #23242a;
-    }
-
-/*------------------------------------------------------------------------------DROPDOWN MENU-----------------------------------------------------------------------------------------*/       
-    
-    .personaldetails{
-        background-color: #2a2f3b;
-        width: 100%;
-        height: 1px;
-        margin-right: 30px;
-    }
-    
-    .profile-img {
-        max-width: 150px;
-        border-radius: 50%;
-        display: block;
-    }
-/*----------------------------------------------------------------------------WIZARD---------------------------------------------------------------------------------------------------*/
-    .form-group {
-        margin-bottom: 20px;
-        margin-top: 15px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        font-size: 15px;
-        display: flex;
-    }
-    .form-group1{
-        display: flex;
-        justify-content: space-between;
-        margin-top: 15px;
-    }
-    .form-group2{
-        margin-top: 15px;
-    }
-    .names{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 100%;
-    }
-    .emailposition{
-        display: flex;
-        flex-direction: column;
-        width: 50%;
-    }
-    #email{
-        height: 40px;
-        width: 85%;
-    }
-    #phone{
-        height: 40px;
-        width: 100%;
-    }
-    .phoneposition{
-        display: flex;
-        flex-wrap: wrap;
-        width: 50%;
-        
-    }
-    .zipcode{
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        width: 50%;
-    }
-    #zipcode{
-        height: 40px;
-        width: 85%;
-    }
-    
-    .citytown{
-        display: flex;
-        flex-wrap: wrap;
-        width: 50%;
-    }
-    #citytown{
-        height: 40px;
-        width: 100%;
-    }
-    #adress{
-        width: 100%;
-    }
-    .from-group2{
-        display: flex;
-    }
-    
-    input[type="text"] {
-        width: 100%;
-        justify-content: space-between;
-        height: 40px;
-        padding: 5px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin-top: 5px;
-    }
-    .form-button{
-        display: flex;
-        margin-top: 40px;
-        margin-bottom: 40px;
-        justify-content: center;
-    
-    }
-    .nextbutton {
-        outline: none;
-        position: relative;
-        font-size: 18px;
-        padding: 25px 0px 25px 0;
-        display: inline-block;
-        min-width: 240px;
-        border-radius: 31px;
-        border: none;
-        cursor: pointer;
-        font-weight: bold;
-        color: #fff;
-        background:  #6643b5;
-        transition: all 0.5s ease;
-        border-radius: 4px;
-        box-shadow: 0 4px 6px rgba(50,50,93,0.11), 0 1px 3px rgba(0,0,0,0.08);
-    } 
-
-/*------------------------------------------------------------------------------------WIZARD-----------------------------------------------------------------------------------------------*/
-/*--------------------------------------------------------------------------------WIZARD PICTURE-------------------------------------------------------------------------------------------*/
-    label.picture {
-        margin-right: 30px;
-    }
-    
-    #picture__input {
-        display: none;
-      }
-      
-      .picture {
-        padding: 70px;
-        width: 152px;
-        height: 152px;
-        background: #ddd;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #aaa;
-        border: 2px dashed currentcolor;
-        cursor: pointer;
-        font-family: sans-serif;
-        transition: color 300ms ease-in-out, background 300ms ease-in-out;
-        outline: none;
-        overflow: hidden;
-      }
-      
-      .picture:hover {
-        color: #777;
-        background: #ccc;
-      }
-      
-      .picture:active {
-        border-color: turquoise;
-        color: turquoise;
-        background: #eee;
-      }
-      
-      .picture:focus {
-        color: #777;
-        background: #ccc;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      }
-      
-      .picture__img {
-        max-width: 100%;
-      }
-    
-/*--------------------------------------------------------------------------------WIZARD PICTURE--------------------------------------------------------------------------------------------*/
-    
-
-/*--------------------------------------------------------------------------------  WIZARD 2 -----------------------------------------------------------------------------------------------*/
-   
-.description{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    padding: 20px;
-}
-
-#description{
-    height: 70px;
-    font-size: 16px;
-}
-.form-info{
-    margin-bottom: 20px;
-    margin-top: -15px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 15px;
-    display: flex;
-    flex-direction: column;
-
-}
-.resumeobjective{
-    display: flex;
-    align-items: baseline;
-}
-
-.workexpirence{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    padding: 20px;
-}
-.section{
-    padding: 20px;
-}
-.date{
-    display: flex;
-    flex-direction: row;
-    width: 50%;
-}
-.jobtitle{
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
-#jobtitle{
-    height: 40px;
-    width: 85%;
-}
-
-.form-button2{
-    display: flex;
-    margin-top: -15px;
-    margin-bottom: 80px;
-    justify-content: center;
-}
-
-#p{
-    font-size: 17px;
-}
-.startdate{
-    display: flex;
-    flex-direction: column;
-}
-.enddate{
-    display: flex;
-    flex-direction: column;
-}
-input[type="date"]{
-    display: flex;
-    height: 40px;
-    width: 100%;
-    justify-content: space-around;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 5px;
-}
-.form-group3{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 15px;
-}
-.education{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    padding: 20px;
-}
-.interests{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    padding: 20px;
-}
-.skills{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    padding: 20px;
-}
-.form-group4{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-top: 15px;
-}
-.cvc{
-    color: #fff;
-    margin-left: 250px;
-}
-</style>
+{% block content %}
 
 
-
-<!-------------------------------------------------------------------------------------HTML------------------------------------------------------------------------------------------------->
-
-<body>
     <header>
         <h1 class="cvc">CvCreator</h1>
         <div class="information">
@@ -511,6 +15,7 @@ input[type="date"]{
             <div class="scroll">
                 <div class="main-column1">
                     <div class="section">
+                        <form action=" " method="POST" class="forma">
                         <div class="resumeobjective">
                             <h3>Resume objective</h3>
                         </div>
@@ -522,7 +27,7 @@ input[type="date"]{
                     <div class="description">
                         <p id="p">Description</p>
                     <label for="description"></label>
-                        <input type="text" id="description" name="description">
+                        <input type="text" id="description" name="resume_description">
                 </div>
                 <br/>
                 <div class="workexpirence">
@@ -533,11 +38,11 @@ input[type="date"]{
                     <div class="form-group1">
                         <div class="jobtitle">
                             <label for="jobtitle">Job title:</label>
-                                <input type="text" id="jobtitle" name="jobtitle" placeholder="e.g. Sales Manager">
+                                <input type="text" id="jobtitle" name="job_title" placeholder="e.g. Sales Manager">
                             </div>
                         <div class="citytown">
                             <label for="citytown">City/Town:</label>
-                                <input type="text" id="citytown" name="citytown" placeholder="e.g. San Francisco">
+                                <input type="text" id="citytown" name="work_citytown" placeholder="e.g. San Francisco">
                             </div>
                         </div>
                     <div class="form-group2">
@@ -547,18 +52,18 @@ input[type="date"]{
                     <div class="form-group3">
                         <div class="startdate">
                             <label for="startdate">Start Date:</label>
-                                <input type="date" id="startdate" name="startdate">
+                                <input type="date" id="startdate" name="work_startdate">
                             </div>
                         <div class="enddate">
                             
                             <label for="enddate">End Date:</label>
-                                <input type="date" id="enddate" name="enddate">
+                                <input type="date" id="enddate" name="work_enddate">
                             </div>
                         </div>
                         <br/>
                         <p id="p">Description</p>
                         <label for="description"></label>
-                            <input type="text" id="description" name="description">
+                            <input type="text" id="description" name="work_description">
                         </div> 
                 </div>
                 <div class="education">
@@ -569,11 +74,11 @@ input[type="date"]{
                     <div class="form-group1">
                         <div class="degree">
                             <label for="degree">Degree:</label>
-                                <input type="text" id="jobtitle" name="jobtitle" placeholder="e.g. Bachelor of Science">
+                                <input type="text" id="degree" name="degree" placeholder="e.g. Bachelor of Science">
                             </div>
                         <div class="citytown">
                             <label for="citytown">City/Town:</label>
-                                <input type="text" id="citytown" name="citytown" placeholder="e.g. San francisco">
+                                <input type="text" id="citytown" name="education_citytown" placeholder="e.g. San francisco">
                             </div>
                         </div>
                     <div class="form-group2">
@@ -583,17 +88,17 @@ input[type="date"]{
                     <div class="form-group3">
                         <div class="startdate">
                             <label for="startdate">Start Date:</label>
-                                <input type="date" id="startdate" name="startdate">
+                                <input type="date" id="startdate" name="education_startdate">
                             </div>
                         <div class="enddate">
                             <label for="enddate">End Date:</label>
-                                <input type="date" id="enddate" name="enddate">
+                                <input type="date" id="enddate" name="education_enddate">
                             </div>
                         </div>
                         <br/>
                         <p id="p">Description</p>
                         <label for="description"></label>
-                            <input type="text" id="description" name="description">
+                            <input type="text" id="description" name="education_description">
                         </div>
                         <div class="interests">
                             <h3>Interest</h3>
@@ -612,7 +117,7 @@ input[type="date"]{
                             <br/>
                             <div class="form-group4">
                                 <label for="skill">Skill</label>
-                                    <input type="text" id="skill" name="skill" placeholder="Enter your skill and your level">
+                                    <input type="text" id="skill" name="skills" placeholder="Enter your skill and your level">
                             </div>
                         </div>
                         </div>
@@ -620,88 +125,14 @@ input[type="date"]{
                             <button type="submit" class="nextbutton">Next step</button> 
                         </div>
                     </div>
+
                 </div>
             </div>
+        </form>
                 </div>
             </div>
         </div>
     </div>
 </div> 
-
-<!------------------------------------------------------------------------------------JavaScript------------------------------------------------------------------------------------------------>
-
-
-    <script>
-
-        const inputFile = document.querySelector("#picture__input");
-        const pictureImage = document.querySelector(".picture__image");
-        const pictureImageTxt = "Choose an image";
-        pictureImage.innerHTML = pictureImageTxt;
-        
-        inputFile.addEventListener("change", function (e) {
-          const inputTarget = e.target;
-          const file = inputTarget.files[0];
-        
-          if (file) {
-            const reader = new FileReader();
-        
-            reader.addEventListener("load", function (e) {
-              const readerTarget = e.target;
-        
-              const img = document.createElement("img");
-              img.src = readerTarget.result;
-              img.classList.add("picture__img");
-        
-              pictureImage.innerHTML = "";
-              pictureImage.appendChild(img);
-            });
-        
-            reader.readAsDataURL(file);
-          } else {
-            pictureImage.innerHTML = pictureImageTxt;
-          }
-        });
-        //DROPDOWN MENU
-        const dropdowns=document.querySelectorAll('.dropdown')
-        //Loop through all drop down elements
-        dropdowns.forEach(dropdown =>{
-            //Get inner elemets from each dropdown
-            const select = dropdown.querySelector('.select');
-            const caret = dropdown.querySelector('.caret');
-            const menu = dropdown.querySelector('.menu');
-            const options = dropdown.querySelectorAll('.menu li');
-            const selected = dropdown.querySelector('.selected');
-        //Add a click event to the select elemenet
-        select.addEventListener('click', () => {
-            //Add the clicked select styles to the select element
-            select.classList.toggle('select-clicked');
-            //Add the rotate styles to the caret elemet
-            caret.classList.toggle('caret-rotate');
-            //Add the open styles to the menu element
-            menu.classList.toggle('menu-open');
-        });
-        //Loop throuh all option elements
-        options.forEach(option =>{
-            //Add a click event to the option element
-            option.addEventListener('click', () =>{
-                //Change selected inner text to clicked option inner text
-                selected.innerText = option.innerText;
-                //Add the clicked slect styles to the select element
-                select.classList.remove('select-clicked'); 
-                //Add the rotate styles to thge caret element
-                caret.classList.remove('caret-rotate');
-                //Add the open styles to the menu element
-                menu.classList.remove('menu-open');
-                //Remove active class from all option elements
-                options.forEach(option => {
-                    option.classList.remove('active');
-                });
-                //Add active class to clicked option element
-                option.classList.add('active');
-                });
-            });
-        });
-
-    </script>
-</body>
+{% endblock %}
 </html>

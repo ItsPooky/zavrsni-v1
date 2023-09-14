@@ -1,4 +1,5 @@
 create table info(
+	first_name varchar(30),
 	last_name varchar(30),
 	email varchar(50),
 	address varchar(30),
