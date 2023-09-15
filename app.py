@@ -53,51 +53,96 @@ def ulogovan():
     else:
         return False
 
+@app.route("/user_novi",methods=["GET","POST"])#za registraciju novih korisnika
+def user_novi():
+        print("user_novi")
+        if request.method=="GET":
+                print("user_novi get")
+                return render_template("index.html")
 
-@app.route('/', methods=["GET", "POST"])
-def render_korisnik_novi():
-    if request.method == "GET":
-        upit2 = "select * from users"
-        cursor.execute(upit2)
-        users = cursor.fetchall()
-        return render_template('register.html', users=users)
+        elif request.method=="POST":
+                forma=request.form
+                hesovana_lozinka=generate_password_hash(forma["lozinka"])#generise hash lozinku
+                vrednosti=(
+                            forma["ime"],
+                            hesovana_lozinka,
+                        # forma["lozinka"],
+                        )
+                print("vrednosti")
+                upit=""" INSERT INTO
+                                users(username,password)
+                                VALUES(%s,%s)
+                        """
+                        #unosi vrednosti u bazu
+                cursor.execute(upit, vrednosti)
+                connection.commit()
 
-    if request.method == "POST":
-        forma = request.form
-        hesovana_lozinka = generate_password_hash(forma["lozinka"])
-        vrednosti = (
-            forma["username"],
-            hesovana_lozinka
-        )
-
-        upit = """insert into
-                    users(username,  password)
-                    values (%s, %s)
-        """
-        cursor.execute(upit, vrednosti)
-        connection.commit()
-        return redirect(url_for("login"))
+                return redirect(url_for("login"))
 
 
-# Deo za login
 
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    if request.method == "GET":
-        return render_template("login.html")
-    if request.method == "POST":
-        forma = request.form
-        upit = "SELECT * FROM users WHERE username=%s"
-        vrednost = (forma["username"],)
-        cursor.execute(upit, vrednost)
-        korisnik = cursor.fetchone()
-        if korisnik and check_password_hash(korisnik["password"], forma["password"]):
-            session["ulogovani_korisnik"] = korisnik
-            return redirect(url_for("render_create_page"))
+#globalna funkcija koja proverava da li ke korisnik ulogovan
+def ulogovan():
+        if "ulogovani_user" in session:
+                return True
         else:
-            return render_template("login.html")
-    else:
-        return render_template("login.html")
+                return False
+
+
+#logika aplikacije
+@app.route('/',methods=["GET","POST"])
+
+def render_login():
+        return render_template('login.html')
+
+@app.route("/logout")
+def logout():
+       session["ulogovani_user"]=None
+       return redirect(url_for("login"))
+
+@app.route('/login',methods=["GET","POST"])
+
+def login():
+
+        if request.method=="GET":
+
+                return render_template("login.html")
+
+        elif request.method=="POST":
+
+                forma = request.form
+                upit="SELECT * FROM users WHERE username=%s"
+                vrednost = (forma["ime"],)
+                cursor.execute(upit, vrednost)
+                users=cursor.fetchone()
+                print("usersss!!")
+                if users !=None:
+                        #if user["lozinka"]==forma["lozinka"]:#za ne hash lozinke
+                        if check_password_hash(users["password"], forma["lozinka"]):#za hash lozinke
+                                print("lozinka je tacna")
+                                session["ulogovani_user"]=users["id"]
+                                return redirect(url_for("render_create_page"))
+                        else:
+                                print("lozinka nije tacna")
+                                return render_template("login.html")
+                else:
+                        return render_template("login.html")
+#def login():
+    #if request.method == "GET":
+        #return render_template("login.html")
+    #if request.method == "POST":
+        #forma = request.form
+        #upit = "SELECT * FROM users WHERE username=%s"
+       # vrednost = (forma["username"],)
+        #cursor.execute(upit, vrednost)
+        #korisnik = cursor.fetchone()
+        #if korisnik and check_password_hash(korisnik["password"], forma["password"]):
+            #session["ulogovani_korisnik"] = korisnik
+           #return redirect(url_for("render_create_page"))
+        #else:
+            #return render_template("login.html")
+    #else:
+        #return render_template("login.html")
 
 
 @app.route('/create', methods=['GET', 'POST'])
