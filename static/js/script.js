@@ -1,34 +1,39 @@
 
+//PICTURE 1
+    const inputFile = document.getElementById("picture__input");
+    const picturePreview = document.getElementById("picture__preview");
+    const pictureImageTxt = "Choose an image";
 
-        const inputFile = document.querySelector("#picture__input");
-        const pictureImage = document.querySelector(".picture__image");
-        const pictureImageTxt = "Choose an image";
-        pictureImage.innerHTML = pictureImageTxt;
-        
-        inputFile.addEventListener("change", function (e) {
-          const inputTarget = e.target;
-          const file = inputTarget.files[0];
-        
-          if (file) {
-            const reader = new FileReader();
-        
-            reader.addEventListener("load", function (e) {
-              const readerTarget = e.target;
-        
-              const img = document.createElement("img");
-              img.src = readerTarget.result;
-              img.classList.add("picture__img");
-        
-              pictureImage.innerHTML = "";
-              pictureImage.appendChild(img);
-            });
-        
-            reader.readAsDataURL(file);
-          } else {
-            pictureImage.innerHTML = pictureImageTxt;
-          }
+    // Dodajte event listener za klik na labelu kako biste otvorili input polje
+    document.querySelector(".picture").addEventListener("click", () => {
+      inputFile.click();
+    });
+
+    inputFile.addEventListener("change", function (e) {
+      const inputTarget = e.target;
+      const file = inputTarget.files[0];
+  
+      if (file) {
+        const reader = new FileReader();
+  
+        reader.addEventListener("load", function (e) {
+          const readerTarget = e.target;
+  
+          const img = document.createElement("img");
+          img.src = readerTarget.result;
+          img.classList.add("picture__img");
+  
+          picturePreview.innerHTML = "";
+          picturePreview.appendChild(img);
         });
-        //DROPDOWN MENU
+  
+        reader.readAsDataURL(file);
+      } else {
+        picturePreview.innerHTML = pictureImageTxt;
+      }
+    });
+
+//DROPDOWN MENU
         const dropdowns=document.querySelectorAll('.dropdown')
         //Loop through all drop down elements
         dropdowns.forEach(dropdown =>{

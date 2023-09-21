@@ -4,6 +4,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import mysql.connector
 import os
 from werkzeug.utils import secure_filename
+import base64
+import pdfkit
+
+
 
 connection = mysql.connector.connect(
     passwd="",  # password for the database
@@ -55,9 +59,7 @@ def ulogovan():
 
 @app.route("/user_novi",methods=["GET","POST"])#za registraciju novih korisnika
 def user_novi():
-        print("user_novi")
         if request.method=="GET":
-                print("user_novi get")
                 return render_template("index.html")
 
         elif request.method=="POST":
@@ -67,8 +69,7 @@ def user_novi():
                             forma["ime"],
                             hesovana_lozinka,
                         # forma["lozinka"],
-                        )
-                print("vrednosti")
+                )
                 upit=""" INSERT INTO
                                 users(username,password)
                                 VALUES(%s,%s)
@@ -78,9 +79,6 @@ def user_novi():
                 connection.commit()
 
                 return redirect(url_for("login"))
-
-
-
 #globalna funkcija koja proverava da li ke korisnik ulogovan
 def ulogovan():
         if "ulogovani_user" in session:
@@ -115,40 +113,23 @@ def login():
                 vrednost = (forma["ime"],)
                 cursor.execute(upit, vrednost)
                 users=cursor.fetchone()
-                print("usersss!!")
+
                 if users !=None:
                         #if user["lozinka"]==forma["lozinka"]:#za ne hash lozinke
                         if check_password_hash(users["password"], forma["lozinka"]):#za hash lozinke
-                                print("lozinka je tacna")
+
                                 session["ulogovani_user"]=users["id"]
                                 return redirect(url_for("render_create_page"))
                         else:
-                                print("lozinka nije tacna")
+
                                 return render_template("login.html")
                 else:
                         return render_template("login.html")
-#def login():
-    #if request.method == "GET":
-        #return render_template("login.html")
-    #if request.method == "POST":
-        #forma = request.form
-        #upit = "SELECT * FROM users WHERE username=%s"
-       # vrednost = (forma["username"],)
-        #cursor.execute(upit, vrednost)
-        #korisnik = cursor.fetchone()
-        #if korisnik and check_password_hash(korisnik["password"], forma["password"]):
-            #session["ulogovani_korisnik"] = korisnik
-           #return redirect(url_for("render_create_page"))
-        #else:
-            #return render_template("login.html")
-    #else:
-        #return render_template("login.html")
-
 
 @app.route('/create', methods=['GET', 'POST'])
 def render_create_page():
     if request.method == 'POST':
-        user_id = session["ulogovani_korisnik"]["id"]
+        user_id = session["ulogovani_user"]
         profilepicture = request.files['profilepicture']  # Get the uploaded file
 
         if profilepicture and allowed_file(profilepicture.filename):
@@ -165,7 +146,6 @@ def render_create_page():
             zip_code = request.form['zip_code']
             phone_number = request.form['phone_number']
             city = request.form['city']
-
             # Insert basic data into the database
             cursor.execute(
                 "INSERT INTO info (user_id, profilepicture, first_name, last_name, email, address, zip_code, phone_number, city) "
@@ -186,7 +166,7 @@ def render_create_page():
 @app.route('/history', methods=['GET', 'POST'])
 def render_history_page():
     if request.method == 'POST':
-        user_id = session["ulogovani_korisnik"]["id"]
+        user_id = session["ulogovani_user"]
         resume_description = request.form['resume_description']
         job_title = request.form['job_title']
         work_citytown = request.form['work_citytown']
@@ -228,17 +208,56 @@ def render_template_page():
 
 @app.route('/modern_template', methods=['GET'])
 def render_modern_template():
-    if "ulogovani_korisnik" not in session:
+    if "ulogovani_user" not in session:
         return redirect(url_for('login'))  # Redirect to login if the user is not logged in
 
-    user_id = session["ulogovani_korisnik"]["id"]
+    user_id = session["ulogovani_user"]
 
     # Execute a query to fetch information from the "info" table for the current user
     cursor.execute("SELECT * FROM info WHERE user_id = %s", (user_id,))
     info = cursor.fetchone()
 
-    return render_template('modern.html', info=info)
+    with open(info["profilepicture"], "rb") as img_file:
+        base64_data = base64.b64encode(img_file.read()).decode('utf-8')
 
+    return render_template('modern.html', info=info,base64_data=base64_data)
+
+# Dodaj funkciju za proveru dozvoljenih ekstenzija za fajlove
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+# Dodaj funkciju za generisanje PDF-a
+@app.route('/generate_pdf', methods=['GET'])
+def generate_pdf():
+    if not ulogovan():
+        return redirect(url_for('login'))  # Ako korisnik nije ulogovan, preusmeri ga na login stranicu
+
+    user_id = session["ulogovani_user"]
+
+    # Izvrši upit za dobavljanje informacija iz tabele "info" za trenutnog korisnika
+    cursor.execute("SELECT * FROM info WHERE user_id = %s", (user_id,))
+    info = cursor.fetchone()
+
+    with open(info["profilepicture"], "rb") as img_file:
+        base64_data = base64.b64encode(img_file.read()).decode('utf-8')
+
+    rendered_html = render_template('modern.html', info=info, base64_data=base64_data)
+
+    # Kreiraj PDF iz HTML-a
+    pdf_path = f'static/pdfs/cv_{user_id}.pdf'
+    pdfkit.from_string(rendered_html, pdf_path)
+
+    # Vrati putanju do generisanog PDF-a
+    return pdf_path
+
+# Dodaj rutu za preuzimanje generisanog PDF-a
+@app.route('/download_pdf', methods=['GET'])
+def download_pdf():
+    pdf_path = generate_pdf()
+    if pdf_path:
+        return send_from_directory(os.path.dirname(pdf_path), os.path.basename(pdf_path), as_attachment=True)
+    else:
+        return "PDF nije generisan."
 
 if __name__ == "__main__":
     app.run(debug=True)

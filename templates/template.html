@@ -1,9 +1,18 @@
 {%extends 'base.html'%}
 
 {% block content %}
-
+<body class="templateselection">
+    
+    <header>
+        <h1 class="cvc"><a href="/" class="headertxt">CvCreator</a></h1>
+        <div class="information">
+                <span class="resumetemplates"><a href="/" class="headertxt" >Resume templates</a></span>
+                    <span class="cvtemplates"><a href="/" class="headertxt">CV templates</a></span>
+        </div>
+    </header>
+        <div class="heading-bg"></div>
+	<div class="heading-bg"></div>
 <div class="mainTemplateDiv">
-    <h1>Pick your desired template</h1>
         <div class="templateparent">
 
             <div class="templatebox">
@@ -24,5 +33,6 @@
 </div>
 
 </div>
+</body>
        
 {% endblock %}

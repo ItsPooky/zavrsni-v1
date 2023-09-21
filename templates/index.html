@@ -4,10 +4,10 @@
 {% block content %}
 
     <header>
-        <h1 class="cvc">CvCreator</h1>
+        <h1 class="cvc"><a href="/" class="headertxt">CvCreator</a></h1>
         <div class="information">
-                <span class="resumetemplates">Resume templates</span>
-                    <span class="cvtemplates">CV templates</span>
+                <span class="resumetemplates"><a href="/" class="headertxt" >Resume templates</a></span>
+                    <span class="cvtemplates"><a href="/" class="headertxt">CV templates</a></span>
         </div>
     </header>
         <div class="heading-bg"></div>
@@ -32,13 +32,13 @@
                 <hr class="personaldetails">
             <div class="form-group">
                 <form action="/create" enctype="multipart/form-data" class="forma" method="POST">
-                <br/>
-                    <label class="picture" for="profilepicture" tabIndex="0">
-                        <span class="picture__image"></span>
+
+                <div class="positionpicture">
+                    <label class="picture" for="profilepicture" tabIndex="0" >
+                        <div class="picture__image" id="picture__preview"></div>
+                        <input type="file" name="profilepicture" id="picture__input" style="display: none;">
                     </label>
-                    <input type="file" name="profilepicture" id="picture__input">
-                        <span id="spnFilePath"></span>
-                    <input type="file" id="FileUpload1" style="display:none" />
+                </div>
                         <div class="names">
                     <label for="firstname">First name:</label>
                         <input type="text" id="firstname" name="first_name">
